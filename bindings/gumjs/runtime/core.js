@@ -417,6 +417,12 @@ Object.defineProperties(Stalker, {
       Stalker._exclude(range.base, range.size);
     }
   },
+  clearExclusions: {
+      enumerable: true,
+      value: function () {
+      Stalker._clearExclusions(); 
+    }
+  },
   follow: {
     enumerable: true,
     value: function (first, second) {

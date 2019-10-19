@@ -71,6 +71,7 @@ GUMJS_DECLARE_SETTER (gumjs_stalker_set_queue_drain_interval)
 GUMJS_DECLARE_FUNCTION (gumjs_stalker_flush)
 GUMJS_DECLARE_FUNCTION (gumjs_stalker_garbage_collect)
 GUMJS_DECLARE_FUNCTION (gumjs_stalker_exclude)
+GUMJS_DECLARE_FUNCTION (gumjs_stalker_clearExclusions)
 GUMJS_DECLARE_FUNCTION (gumjs_stalker_follow)
 GUMJS_DECLARE_FUNCTION (gumjs_stalker_unfollow)
 GUMJS_DECLARE_FUNCTION (gumjs_stalker_add_call_probe)
@@ -151,6 +152,7 @@ static const GumV8Function gumjs_stalker_functions[] =
   { "flush", gumjs_stalker_flush },
   { "garbageCollect", gumjs_stalker_garbage_collect },
   { "_exclude", gumjs_stalker_exclude },
+  { "_clearExclusions", gumjs_stalker_clearExclusions },
   { "_follow", gumjs_stalker_follow },
   { "unfollow", gumjs_stalker_unfollow },
   { "addCallProbe", gumjs_stalker_add_call_probe },
@@ -425,6 +427,12 @@ GUMJS_DEFINE_FUNCTION (gumjs_stalker_exclude)
   range.size = size;
 
   gum_stalker_exclude (stalker, &range);
+}
+
+GUMJS_DEFINE_FUNCTION (gumjs_stalker_clearExclusions)
+{
+  auto stalker = _gum_v8_stalker_get (module);
+  gum_stalker_clearExclusions(stalker);
 }
 
 GUMJS_DEFINE_FUNCTION (gumjs_stalker_follow)

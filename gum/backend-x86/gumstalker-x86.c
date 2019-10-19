@@ -570,6 +570,17 @@ gum_stalker_exclude (GumStalker * self,
   g_array_append_val (self->exclusions, *range);
 }
 
+void
+gum_stalker_clearExclusions(GumStalker * self)
+{
+  //g_array_set_size ( self->exclusions, 0);
+  g_array_remove_index ( self->exclusions, 0);
+  /*
+  g_array_free (self->exclusions, TRUE);
+  self->exclusions = g_array_new (FALSE, FALSE, sizeof (GumMemoryRange));
+  */
+}
+
 gint
 gum_stalker_get_trust_threshold (GumStalker * self)
 {

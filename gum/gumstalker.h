@@ -81,6 +81,7 @@ GUM_API GumStalker * gum_stalker_new (void);
 
 GUM_API void gum_stalker_exclude (GumStalker * self,
     const GumMemoryRange * range);
+GUM_API void gum_stalker_clearExclusions(GumStalker * self);
 
 GUM_API gint gum_stalker_get_trust_threshold (GumStalker * self);
 GUM_API void gum_stalker_set_trust_threshold (GumStalker * self,

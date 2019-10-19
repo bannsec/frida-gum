@@ -79,6 +79,7 @@ GUMJS_DECLARE_SETTER (gumjs_stalker_set_queue_drain_interval)
 GUMJS_DECLARE_FUNCTION (gumjs_stalker_flush)
 GUMJS_DECLARE_FUNCTION (gumjs_stalker_garbage_collect)
 GUMJS_DECLARE_FUNCTION (gumjs_stalker_exclude)
+GUMJS_DECLARE_FUNCTION (gumjs_stalker_clearExclusions)
 GUMJS_DECLARE_FUNCTION (gumjs_stalker_follow)
 GUMJS_DECLARE_FUNCTION (gumjs_stalker_unfollow)
 GUMJS_DECLARE_FUNCTION (gumjs_stalker_add_call_probe)
@@ -169,6 +170,7 @@ static const duk_function_list_entry gumjs_stalker_functions[] =
   { "flush", gumjs_stalker_flush, 0 },
   { "garbageCollect", gumjs_stalker_garbage_collect, 0 },
   { "_exclude", gumjs_stalker_exclude, 2 },
+  { "_clearExclusions", gumjs_stalker_clearExclusions, 0 },
   { "_follow", gumjs_stalker_follow, 6 },
   { "unfollow", gumjs_stalker_unfollow, 1 },
   { "addCallProbe", gumjs_stalker_add_call_probe, 3 },
@@ -437,6 +439,15 @@ GUMJS_DEFINE_FUNCTION (gumjs_stalker_garbage_collect)
   stalker = _gum_duk_stalker_get (gumjs_module_from_args (args));
 
   gum_stalker_garbage_collect (stalker);
+
+  return 0;
+}
+
+GUMJS_DEFINE_FUNCTION (gumjs_stalker_clearExclusions)
+{
+  GumDukStalker * module;
+  module = gumjs_module_from_args (args);
+  gum_stalker_clearExclusions(_gum_duk_stalker_get (module));
 
   return 0;
 }
